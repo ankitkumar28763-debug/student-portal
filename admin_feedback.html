@@ -1,0 +1,1 @@
+{% extends "admin_layout.html" %}{% block content %}<div class="card"><h3>Student Feedback</h3><table class="table"><tr><th>Student</th><th>Rating</th><th>Feedback</th><th>Date</th></tr>{% for r in rows %}<tr><td>{{r['name'] or r['student_id']}}</td><td>{{r['rating']}}/5</td><td>{{r['message']}}</td><td>{{r['created_at']}}</td></tr>{% endfor %}</table></div>{% endblock %}

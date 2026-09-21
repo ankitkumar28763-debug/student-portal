@@ -1,0 +1,4 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Admin - Student Portal</title><link rel="stylesheet" href="{{url_for('static',filename='style.css')}}"></head><body>
+<div class="app"><aside class="side"><h2>⚙️ Admin Panel</h2>
+<a href="{{url_for('admin_dashboard')}}">🏠 Dashboard</a><a href="{{url_for('admin_corrections')}}">✏️ Corrections</a><a href="{{url_for('admin_feedback')}}">💬 Feedback</a><a href="{{url_for('admin_logout')}}">↪ Logout</a>
+</aside><main class="main"><header class="top"><div><h2>Administrator</h2><span class="small">{{session.get('admin_name')}}</span></div><a class="btn secondary" href="{{url_for('dashboard')}}">Student Portal</a></header><div class="content">{% with messages=get_flashed_messages() %}{% for m in messages %}<div class="flash">{{m}}</div>{% endfor %}{% endwith %}{% block content %}{% endblock %}</div></main></div></body></html>

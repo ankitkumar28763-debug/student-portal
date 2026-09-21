@@ -1,0 +1,17 @@
+{% extends "admin_layout.html" %}{% block content %}
+<div class="stats"><div class="stat">👨‍🎓<h3>{{counts.students}}</h3><span class="small">Students</span></div><div class="stat">📢<h3>{{counts.notices}}</h3><span class="small">Notices</span></div><div class="stat">📤<h3>{{counts.assignments}}</h3><span class="small">Assignments</span></div><div class="stat">✏️<h3>{{counts.corrections}}</h3><span class="small">Pending Corrections</span></div></div>
+
+<div class="grid">
+<div class="card"><h3>Add Student</h3><form class="form" method="post" action="{{url_for('admin_student_add')}}"><input name="student_id" placeholder="Student ID" required><input name="password" placeholder="Login password" required><input name="name" placeholder="Student name" required><input name="course" placeholder="Course"><input name="semester" placeholder="Semester"><input name="email" placeholder="Email"><button class="btn">Add Student</button></form></div>
+<div class="card"><h3>Publish Notice</h3><form class="form" method="post" action="{{url_for('admin_notice_add')}}"><input name="title" placeholder="Notice title" required><textarea name="body" rows="5" placeholder="Notice details"></textarea><button class="btn">Publish Notice</button></form></div>
+</div>
+
+<div class="grid">
+<div class="card"><h3>Add Result</h3><form class="form" method="post" action="{{url_for('admin_result_add')}}"><input name="student_id" placeholder="Student ID" required><input name="subject" placeholder="Subject" required><input type="number" min="0" max="100" name="marks" placeholder="Marks" required><button class="btn">Save Result</button></form></div>
+<div class="card"><h3>Update Attendance</h3><form class="form" method="post" action="{{url_for('admin_attendance_add')}}"><input name="student_id" placeholder="Student ID" required><input name="subject" placeholder="Subject" required><input type="number" min="0" max="100" name="percentage" placeholder="Attendance %" required><button class="btn">Save Attendance</button></form></div>
+</div>
+
+<div class="card" style="margin-top:18px"><h3>Add Fee Record</h3><form class="form-grid" method="post" action="{{url_for('admin_fee_add')}}"><input name="student_id" placeholder="Student ID" required><input name="semester" placeholder="Semester" required><input type="number" name="amount" placeholder="Amount" required><select name="status"><option>Paid</option><option>Due</option></select><button class="btn">Save Fee</button></form></div>
+
+<div class="card" style="margin-top:18px"><h3>Students</h3><table class="table"><tr><th>ID</th><th>Name</th><th>Course</th><th>Semester</th><th>Action</th></tr>{% for s in students %}<tr><td>{{s['student_id']}}</td><td>{{s['name']}}</td><td>{{s['course']}}</td><td>{{s['semester']}}</td><td><form method="post" action="{{url_for('admin_student_delete',student_pk=s['id'])}}" onsubmit="return confirm('Delete this student and related demo records?')"><button class="btn" style="background:#b42318">Delete</button></form></td></tr>{% endfor %}</table></div>
+{% endblock %}

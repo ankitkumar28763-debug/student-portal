@@ -1,0 +1,8 @@
+{% extends "layout.html" %}{% block content %}
+{% if content=="result" %}<div class="card"><h3>Semester Result</h3><table class="table"><tr><th>Subject</th><th>Marks</th><th>Grade</th></tr>{% for r in rows %}<tr><td>{{r['subject']}}</td><td>{{r['marks']}}/100</td><td>{{r['grade']}}</td></tr>{% endfor %}</table></div>
+{% elif content=="attendance" %}<div class="card"><h3>Subject-wise Attendance</h3><table class="table"><tr><th>Subject</th><th>Attendance</th></tr>{% for r in rows %}<tr><td>{{r['subject']}}</td><td>{{r['percentage']}}%</td></tr>{% endfor %}</table></div>
+{% elif content=="fees" %}<div class="card"><h3>Fee History</h3><table class="table"><tr><th>Semester</th><th>Amount</th><th>Status</th></tr>{% for r in rows %}<tr><td>{{r['semester']}}</td><td>₹{{r['amount']}}</td><td><span class="badge">{{r['status']}}</span></td></tr>{% endfor %}</table></div>
+{% elif content=="notice" %}<div class="card"><h3>Latest Notices</h3>{% for r in rows %}<div class="notice"><b>{{r['title']}}</b><p>{{r['body']}}</p><span class="small">{{r['created_at']}}</span></div>{% endfor %}</div>
+{% elif content=="timetable" %}<div class="card"><h3>Weekly Time Table</h3><table class="table"><tr><th>Day</th><th>10–11</th><th>11–12</th><th>12–1</th><th>2–3</th></tr>{% for r in rows %}<tr><td>{{r['day']}}</td><td>{{r['t1']}}</td><td>{{r['t2']}}</td><td>{{r['t3']}}</td><td>{{r['t4']}}</td></tr>{% endfor %}</table></div>
+{% elif content=="profile" %}<div class="card"><h3>Student Profile</h3><p><b>Name:</b> {{user['name']}}</p><p><b>Student ID:</b> {{user['student_id']}}</p><p><b>Course:</b> {{user['course']}}</p><p><b>Semester:</b> {{user['semester']}}</p><p><b>Email:</b> {{user['email']}}</p></div>{% endif %}
+{% endblock %}
